@@ -1,0 +1,22 @@
+{
+  "furnaceroom": {
+    "sounds": [
+      "custom/furnaceroom"
+    ]
+  },
+  "goodending": {
+    "sounds": [
+      "custom/goodending"
+    ]
+  },
+  "introscene": {
+    "sounds": [
+      "custom/introscene"
+    ]
+  },
+  "outermind": {
+    "sounds": [
+      "custom/outermind"
+    ]
+  }
+}
