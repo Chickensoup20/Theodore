@@ -1,0 +1,24 @@
+name: Auto Release Resource Pack
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger this workflow when a tag starting with 'v' is pushed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Archive Resource Pack Folder
+        run: zip -r release-pack.zip "Theodore's Resourcepack"
+
+      - name: Create Release and Upload Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release-pack.zip
+          # The tag name (e.g., 'v1.0.0') will automatically become the release name
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
