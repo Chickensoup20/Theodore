@@ -8,16 +8,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Archive Resource Pack Files
-        run: zip -r release-pack.zip . -x "*.git*" "release-pack.zip"
+      - name: Create ZIP of repo contents
+        run: |
+          zip -r release-pack.zip . \
+            -x "*.git*" ".github/*" "release-pack.zip"
 
       - name: Create Release and Upload Asset
         uses: softprops/action-gh-release@v1
         with:
           files: release-pack.zip
+          draft: false
+          prerelease: false
+          append_body: false
+          generate_release_notes: false
+          fail_on_missing_tag: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
