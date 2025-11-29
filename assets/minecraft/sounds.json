@@ -18,5 +18,15 @@
     "sounds": [
       "custom/outermind"
     ]
+  },
+  "mainmenu": {
+    "sounds": [
+      "custom/mainmenu"
+    ]
+  },
+  "badending": {
+    "sounds": [
+      "custom/badending"
+    ]
   }
 }
