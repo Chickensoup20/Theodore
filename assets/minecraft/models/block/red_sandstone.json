@@ -2,9 +2,9 @@
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "item/BLOMEE",
+		"0": "item/blomee",
 		"1": "item/texture",
-		"particle": "item/BLOMEE"
+		"particle": "item/blomee"
 	},
 	"elements": [
 		{

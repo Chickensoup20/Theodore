@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "item/DEMMY",
-		"particle": "item/DEMMY"
+		"0": "item/demon",
+		"particle": "item/demon"
 	},
 	"elements": [
 		{
