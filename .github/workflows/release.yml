@@ -13,19 +13,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create ZIP of repo contents
+      - name: Create ZIP without extra folder
         run: |
           zip -r release-pack.zip . \
             -x "*.git*" ".github/*" "release-pack.zip"
 
-      - name: Create Release and Upload Asset
-        uses: softprops/action-gh-release@v1
-        with:
-          files: release-pack.zip
-          draft: false
-          prerelease: false
-          append_body: false
-          generate_release_notes: false
-          fail_on_missing_tag: true
+      # Delete the auto-generated release if GitHub created one
+      - name: Delete auto release
+        run: |
+          gh release delete "$GITHUB_REF_NAME" -y || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Create clean release
+      - name: Create release
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            -t "$GITHUB_REF_NAME" \
+            -n "Automatic resource pack release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Upload your custom zip ONLY
+      - name: Upload asset
+        run: |
+          gh release upload "$GITHUB_REF_NAME" release-pack.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
